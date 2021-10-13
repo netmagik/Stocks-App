@@ -1,19 +1,25 @@
 import React, {useState} from "react";
 import Search from "./components/search";
+import Stock from "./components/Stock";
 
 
 function App() {
 
   const [query, setQuery] = useState('');
   const [stockChartXValues, setStockChartXValues] = useState([]);
-  const [stockChartYValues, setStockChartYValues] = useState([]);
+  const [stockChartYValuesHigh, setStockChartYValuesHigh] = useState([]);
+  const [stockChartYValuesLow, setStockChartYValuesLow] = useState([]);
+  const [stockChartYValuesOpen, setStockChartYValuesOpen] = useState([]);
 
 
   const key = process.env.REACT_APP_API_KEY;
 
   const search = async (e) => {
     const stockChartXValues = [];
-    const stockChartYValues = [];
+    const stockChartYValuesHigh = [];
+    const stockChartYValuesLow =[];
+    const stockChartYValuesOpen = [];
+
     if (e.key === 'Enter') {
 
         const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${query}&apikey=${key}`;
@@ -22,25 +28,21 @@ function App() {
         .then((data) => {
           console.log(data['Time Series (Daily)']);
       
-          // console.log(data.filter(obj => obj['Time Series (Daily)']))
-          // Object.keys(data.map(key => key['Time Series (Daily)']['2. high']))
           for (let key in data['Time Series (Daily)']) {
-            stockChartYValues.push(data['Time Series (Daily)'][key]['2. high']);
+            stockChartYValuesHigh.push(data['Time Series (Daily)'][key]['2. high']);
             stockChartXValues.push(key);
+            stockChartYValuesOpen.push(data['Time Series (Daily)'][key]['1. open']);
+            stockChartYValuesLow.push(data['Time Series (Daily)'][key]['3. low']);
+
           }
           setStockChartXValues(stockChartXValues.reverse());
-          setStockChartYValues(stockChartYValues.reverse());
-          console.log(stockChartXValues);
-          console.log(stockChartYValues)
-        })
-        
-        // const json = await res.json();
-        // console.log(stockHighValues);
-        // setStocks(stockHighValues);
+          setStockChartYValuesHigh(stockChartYValuesHigh.reverse());
+          setStockChartYValuesOpen(stockChartYValuesOpen.reverse());
+          setStockChartYValuesLow(stockChartYValuesLow.reverse());
 
-    // catch (error) {
-    //     console.log(error);
-    // }
+          console.log(stockChartXValues);
+          console.log(stockChartYValuesHigh)
+        })
     }
   }
 
@@ -56,6 +58,15 @@ function App() {
         handleSearch={handleSearch} 
         search={search}
         query={query} />
+        
+       {stockChartYValuesHigh.length > 0 ?  
+        <Stock 
+          pricesHigh={stockChartYValuesHigh}
+          pricesLow={stockChartYValuesLow}
+          pricesOpen={stockChartYValuesOpen}
+          dates={stockChartXValues}
+          query={query}
+          /> : ''}
    </div>
   );
 }
