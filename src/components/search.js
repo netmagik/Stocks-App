@@ -8,9 +8,11 @@ const Search = (props) => {
 
     return (
         <div className="search-area">
-            <label htmlFor="search">Enter Stock Symbol</label>
+            <h1>Stock: {props.query}</h1>
+            {/* <label htmlFor="search">Enter Stock Symbol</label> */}
             <input 
                 type="text" 
+                placeholder="Stock Symbol (ex: IBM)"
                 onChange={handleChange}
                 onKeyPress={props.search}
                 value={props.query}

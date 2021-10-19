@@ -39,7 +39,7 @@ function App() {
           setStockChartYValuesHigh(stockChartYValuesHigh.reverse());
           setStockChartYValuesOpen(stockChartYValuesOpen.reverse());
           setStockChartYValuesLow(stockChartYValuesLow.reverse());
-
+          // setQuery('');
           console.log(stockChartXValues);
           console.log(stockChartYValuesHigh)
         })

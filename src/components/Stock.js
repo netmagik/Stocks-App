@@ -11,38 +11,49 @@ const Stock = (props) => {
                 label: 'High',
                 borderColor: '#3333ff',
                 fill: false,
+                borderWidth: 2,
             },
             {
                 data: props.pricesLow,
                 label: 'Low',
                 borderColor: 'red',
                 fill: false,
+                borderWidth: 2,
             },
             {
                 data: props.pricesOpen,
                 label: 'Open',
                 borderColor: 'yellow',
                 fill: false,
+                borderWidth: 2,
             }
         ],
         
     }
 
     const options = {
+       
+        plugins: {
+            legend: {
+                display: true,
+                labels: {
+                    color: 'rgb(255, 99, 132)'
+                }
+            }
+        },
+        plugins: {
         title: {
             display: true,
-            text: props.query,
+            text: 'Prices',
+            padding: {
+                top: 10,
+                bottom: 30
+            },
+            font: {
+                size: 32,
+            },
         },
-        scales: {
-            yAxes: [
-                {
-                    ticks: {
-                        suggestedMin: 0,
-                        suggestedMax: 100
-                    }
-                }
-            ]
-        },
+    }
         
     }
         
