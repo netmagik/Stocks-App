@@ -51,6 +51,7 @@ const Stock = (props) => {
             },
             font: {
                 size: 32,
+                family: 'Montserrat'
             },
         },
     }

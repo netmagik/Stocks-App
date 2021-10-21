@@ -8,7 +8,7 @@ const Search = (props) => {
 
     return (
         <div className="search-area">
-            <h1>Stock: {props.query}</h1>
+            <h1>Stock: <span className="symbol">{props.query}</span></h1>
             {/* <label htmlFor="search">Enter Stock Symbol</label> */}
             <input 
                 type="text" 

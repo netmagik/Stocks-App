@@ -19,12 +19,34 @@ body {
   justify-items: center;
 }
 
+input {
+  outline: none;
+}
+
 #search-box {
-  max-width: 300px;
-  margin: 20px auto;
+  width: 350px;
+  margin: 20px 30px;
+  text-transform: uppercase;
+  padding: 10px 5px;
+  border-radius: 5px;
+  border: rgb(204, 219, 232) 1px solid;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 
+              0 1px 2px rgb(0 0 0 / 24%);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)
+
+}
+
+#search-box:hover {
+  box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 
+  0 10px 10px rgb(0 0 0 / 22%);
+  border: rgb(132, 145, 156) 1px solid;
 }
 
 .chart {
   max-width: 800px;
   margin: 20px auto;
+}
+
+.symbol {
+  text-transform: uppercase;
 }
