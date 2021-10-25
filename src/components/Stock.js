@@ -28,7 +28,6 @@ const Stock = (props) => {
                 borderWidth: 2,
             }
         ],
-        
     }
 
     const options = {
@@ -37,18 +36,22 @@ const Stock = (props) => {
             legend: {
                 display: true,
                 labels: {
-                    color: 'rgb(255, 99, 132)'
-                }
-            }
-        },
-        plugins: {
-        title: {
-            display: true,
-            text: 'Prices',
-            padding: {
-                top: 10,
-                bottom: 30
+                    color: 'black',
+                    fontFamily: 'Montserrat',
+                },
+                font: {
+                    size: 18,
+                    weight: 'bold',
+                    family: 'Montserrat',
+                },
             },
+            title: {
+                display: true,
+                text: 'Prices',
+                padding: {
+                    top: 10,
+                    bottom: 30
+                },
             font: {
                 size: 32,
                 family: 'Montserrat'

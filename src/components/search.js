@@ -17,7 +17,9 @@ const Search = (props) => {
                 onKeyPress={props.search}
                 value={props.query}
                 name="search" 
-                id="search-box" />
+                id="search-box" 
+                autoFocus
+                />
         </div>
     )
 }

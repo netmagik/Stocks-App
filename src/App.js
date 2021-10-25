@@ -59,14 +59,16 @@ function App() {
         search={search}
         query={query} />
         
-       {stockChartYValuesHigh.length > 0 ?  
+       {stockChartXValues.length < 1 ?   
+        'Check to make sure you typed in your stock symbol correctly' :
         <Stock 
           pricesHigh={stockChartYValuesHigh}
           pricesLow={stockChartYValuesLow}
           pricesOpen={stockChartYValuesOpen}
           dates={stockChartXValues}
           query={query}
-          /> : ''}
+          />
+          }
    </div>
   );
 }
