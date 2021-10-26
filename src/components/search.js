@@ -11,7 +11,7 @@ const Search = (props) => {
             <h1>Stock: <span className="symbol">{props.query}</span></h1>
             {/* <label htmlFor="search">Enter Stock Symbol</label> */}
             <input 
-                type="text" 
+                type="search" 
                 placeholder="Stock Symbol (ex: IBM)"
                 onChange={handleChange}
                 onKeyPress={props.search}

@@ -10,6 +10,7 @@ function App() {
   const [stockChartYValuesHigh, setStockChartYValuesHigh] = useState([]);
   const [stockChartYValuesLow, setStockChartYValuesLow] = useState([]);
   const [stockChartYValuesOpen, setStockChartYValuesOpen] = useState([]);
+  
 
 
   const key = process.env.REACT_APP_API_KEY;
