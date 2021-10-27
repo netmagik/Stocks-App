@@ -42,27 +42,6 @@ function App() {
         setStockChartYValuesOpen(stockChartYValuesOpen.reverse());
       } catch (error) {
         console.log(error);
-        // const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${query}&apikey=${key}`;
-        // await fetch(url)
-        // .then(res => res.json())
-        // .then((data) => {
-        //   console.log(data['Time Series (Daily)']);
-      
-        //   for (let key in data['Time Series (Daily)']) {
-        //     stockChartYValuesHigh.push(data['Time Series (Daily)'][key]['2. high']);
-        //     stockChartXValues.push(key);
-        //     stockChartYValuesOpen.push(data['Time Series (Daily)'][key]['1. open']);
-        //     stockChartYValuesLow.push(data['Time Series (Daily)'][key]['3. low']);
-
-        //   }
-        //   setStockChartXValues(stockChartXValues.reverse());
-        //   setStockChartYValuesHigh(stockChartYValuesHigh.reverse());
-        //   setStockChartYValuesOpen(stockChartYValuesOpen.reverse());
-        //   setStockChartYValuesLow(stockChartYValuesLow.reverse());
-        //   // setQuery('');
-        //   console.log(stockChartXValues);
-        //   console.log(stockChartYValuesHigh)
-        //})
     }
   }
 }
