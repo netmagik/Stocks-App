@@ -11,15 +11,21 @@ const Search = (props) => {
             <h1>Stock: <span className="symbol">{props.query}</span></h1>
             {/* <label htmlFor="search">Enter Stock Symbol</label> */}
             <input 
-                type="search" 
+                type="text" 
                 placeholder="Stock Symbol (ex: IBM)"
                 onChange={handleChange}
                 onKeyPress={props.search}
                 value={props.query}
                 name="search" 
                 id="search-box" 
+                aria-label="Enter Stock Symbol"
                 autoFocus
                 />
+            <button
+                id="reset-button"
+                onClick={props.reset}>
+                Reset
+            </button>
         </div>
     )
 }

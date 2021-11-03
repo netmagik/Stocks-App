@@ -14,18 +14,13 @@ body {
   max-width: 1200px;
 }
 
-.search-area {
-  display: grid;
-  justify-items: center;
-}
-
 input {
   outline: none;
 }
 
 #search-box {
   width: 350px;
-  margin: 20px 30px;
+  margin: 20px 10px;
   text-transform: uppercase;
   padding: 10px 5px;
   border-radius: 5px;
@@ -40,6 +35,24 @@ input {
   box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 
   0 10px 10px rgb(0 0 0 / 22%);
   border: rgb(132, 145, 156) 1px solid;
+}
+
+#reset-button {
+  padding: 10px 30px;
+  outline: none;
+  border: rgb(204, 219, 232) 1px solid;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 
+              0 1px 2px rgb(0 0 0 / 24%);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)
+
+}
+
+#reset-button:hover {
+  border: rgb(132, 145, 156) 1px solid;
+  box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 
+  0 10px 10px rgb(0 0 0 / 22%);
 }
 
 .chart {
@@ -77,4 +90,39 @@ input {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.current-price {
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border: 1px solid gray;
+  width: 250px;
+  border-radius: 5px;
+  margin: 20px auto;
+}
+
+.current-price span {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+#get-price-button {
+  padding: 10px 10px;
+  font-size: 1rem;
+  margin: 30px auto 40px;
+  appearance: none;
+  border-radius: 5px;
+  display: block;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: 0.4 ease;
+  box-shadow: 1px 2px 2px 1px rgba(0,0,0,0.1);
+  background-color: #22bdbace;
+}
+
+#get-price-button:hover {
+  background-color: #22bdba;
+  box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 
+  0 10px 10px rgb(0 0 0 / 22%);
 }

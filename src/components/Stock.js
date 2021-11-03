@@ -47,7 +47,7 @@ const Stock = (props) => {
             },
             title: {
                 display: true,
-                text: 'Prices',
+                text: 'Last 6 Months',
                 padding: {
                     top: 10,
                     bottom: 30
@@ -65,6 +65,16 @@ const Stock = (props) => {
         
     return (
         <div className="chart">
+            <button 
+                id="get-price-button"
+                onClick={props.getPrice}>
+                    Get Current Price
+                </button>
+                {props.currentPrice !== null ?
+                    <p className="current-price">
+                      Current Price For {props.query}: <span>${props.currentPrice}</span>
+                    </p> : ''  }
+                
             <Line data={data} options={options} />
         </div>
     )

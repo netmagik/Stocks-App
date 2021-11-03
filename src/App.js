@@ -10,7 +10,7 @@ function App() {
   const [stockChartYValuesHigh, setStockChartYValuesHigh] = useState([]);
   const [stockChartYValuesLow, setStockChartYValuesLow] = useState([]);
   const [stockChartYValuesOpen, setStockChartYValuesOpen] = useState([]);
-  
+  const [currentPrice, setCurrentPrice] = useState(null);
 
 
   const key = process.env.REACT_APP_API_KEY;
@@ -24,7 +24,7 @@ function App() {
     if (e.key === 'Enter') {
 
       try {
-        const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${query}&apikey=${key}`);
+        const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol=${query}&apikey=${key}`);
         const data = await response.json();
         console.log(data);
         const stockData = data['Time Series (Daily)'];
@@ -35,40 +35,63 @@ function App() {
           stockChartYValuesLow.push(stockData[key]['3. low']);
           stockChartYValuesOpen.push(stockData[key]['1. open']);
         }
-        // setQuery('');
+        
         setStockChartXValues(stockChartXValues.reverse());
         setStockChartYValuesHigh(stockChartYValuesHigh.reverse());
         setStockChartYValuesLow(stockChartYValuesLow.reverse());
         setStockChartYValuesOpen(stockChartYValuesOpen.reverse());
       } catch (error) {
-        console.log(error);
-    }
+      }
   }
 }
 
   const handleSearch = (symbol) => {
-    console.log('Set Query');
     setQuery(symbol);
   }
 
+  const getPrice = async () => {
+    try {
+      const response =  await fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${query}&apikey=${key}`)
+      const data = await response.json();
+      const price = data['Global Quote']['05. price'];
+      console.log(price)
+      setCurrentPrice(parseFloat(price).toLocaleString());
+    } catch (error) {
+
+    }
+  }
+
+  const reset = () => {
+    setCurrentPrice(null);
+    setQuery('');
+    setStockChartXValues([]);
+    setStockChartYValuesHigh([]);
+    setStockChartYValuesOpen([]);
+    setStockChartYValuesLow([]);
+  }
 
   return (
     <div className="app">
       <Search 
         handleSearch={handleSearch} 
         search={search}
-        query={query} />
+        query={query}
+        reset={reset}
+       />
         
-       {stockChartXValues.length < 1 ?   
-        'Check to make sure you typed in your stock symbol correctly' :
-        <Stock 
+       {(stockChartYValuesHigh.length > 0) 
+        ?   
+          <Stock 
           pricesHigh={stockChartYValuesHigh}
           pricesLow={stockChartYValuesLow}
           pricesOpen={stockChartYValuesOpen}
           dates={stockChartXValues}
           query={query}
-          />
-          }
+          getPrice={getPrice}
+          currentPrice={currentPrice}
+          /> 
+          : ''
+        }
    </div>
   );
 }
