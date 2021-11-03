@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import Search from "./components/search";
 import Stock from "./components/Stock";
+import Select from "./components/Search-select";
+import { COMPLETIONSTATEMENT_TYPES } from "@babel/types";
 
 
 function App() {
@@ -70,6 +72,14 @@ function App() {
     setStockChartYValuesLow([]);
   }
 
+  const loadOptions = () => {
+    console.log('load options')
+  }
+
+  const onChange = () => {
+    console.log('OnChange')
+  }
+
   return (
     <div className="app">
       <Search 
@@ -77,6 +87,12 @@ function App() {
         search={search}
         query={query}
         reset={reset}
+       />
+
+       <Select 
+       query={query}
+       onChange={onChange}
+       loadOptions={loadOptions}
        />
         
        {(stockChartYValuesHigh.length > 0) 
