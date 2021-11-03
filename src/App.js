@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import Search from "./components/search";
 import Stock from "./components/Stock";
 import Select from "./components/Search-select";
-import { COMPLETIONSTATEMENT_TYPES } from "@babel/types";
 
 
 function App() {
@@ -72,8 +71,24 @@ function App() {
     setStockChartYValuesLow([]);
   }
 
-  const loadOptions = () => {
-    console.log('load options')
+  const loadOptions = async (inputText, callBack) => {
+    try {
+      const response = await fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${inputText}&apikey=${key}`)
+      const data = await response.json();
+      let arr = [];
+      for (let key in data['bestMatches']) {
+        let name = data['bestMatches'][key]['2. name'];
+        let symbol = data['bestMatches'][key]['1. symbol'];
+        arr.push({
+          label: '(' + symbol + ') ' + name,
+          value: symbol
+        })
+        console.log(arr)
+      }
+      callBack(arr);
+    } catch (error) {
+
+    }
   }
 
   const onChange = () => {
