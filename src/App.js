@@ -2,12 +2,12 @@ import React, {useState, useEffect} from "react";
 // import Search from "./components/search";
 import Stock from "./components/Stock";
 import Select from "./components/Search-select";
-import { useStateWithCallbackLazy } from 'use-state-with-callback';
+// import { useStateWithCallbackLazy } from 'use-state-with-callback';
 
 
 function App() {
 
-  const [query, setQuery] =  useStateWithCallbackLazy('');
+  const [query, setQuery] =  useState('');
   const [stockChartXValues, setStockChartXValues] = useState([]);
   const [stockChartYValuesHigh, setStockChartYValuesHigh] = useState([]);
   const [stockChartYValuesLow, setStockChartYValuesLow] = useState([]);
@@ -17,6 +17,7 @@ function App() {
 
   const key = process.env.REACT_APP_API_KEY;
 
+  useEffect(() => {
     const search = async () => {
       const stockChartXValues = [];
       const stockChartYValuesHigh = [];
@@ -42,7 +43,11 @@ function App() {
           setStockChartYValuesOpen(stockChartYValuesOpen.reverse());
         } catch (error) {
         }
-  }
+    }
+    search();
+
+  }, [query]);
+  
   
         
   // const handleSearch = (symbol) => {
@@ -92,7 +97,7 @@ function App() {
 
     const onChange = async (selectedSymbol) => {
       let symbol = selectedSymbol.value
-      setQuery(symbol, () => search(query));
+      setQuery(symbol);
 
     }
 
