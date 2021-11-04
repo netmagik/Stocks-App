@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import Search from "./components/search";
+import React, {useState, useEffect} from "react";
+// import Search from "./components/search";
 import Stock from "./components/Stock";
 import Select from "./components/Search-select";
 
@@ -16,39 +16,37 @@ function App() {
 
   const key = process.env.REACT_APP_API_KEY;
 
-  const search = async (e) => {
-    const stockChartXValues = [];
-    const stockChartYValuesHigh = [];
-    const stockChartYValuesLow =[];
-    const stockChartYValuesOpen = [];
+    const search = async () => {
+      const stockChartXValues = [];
+      const stockChartYValuesHigh = [];
+      const stockChartYValuesLow =[];
+      const stockChartYValuesOpen = [];
 
-    if (e.key === 'Enter') {
-
-      try {
-        const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol=${query}&apikey=${key}`);
-        const data = await response.json();
-        console.log(data);
-        const stockData = data['Time Series (Daily)'];
-        console.log(stockData);
-        for (let key in stockData) {
-          stockChartXValues.push(key);
-          stockChartYValuesHigh.push(stockData[key]['2. high']);
-          stockChartYValuesLow.push(stockData[key]['3. low']);
-          stockChartYValuesOpen.push(stockData[key]['1. open']);
+        try {
+          const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol=${query}&apikey=${key}`);
+          const data = await response.json();
+          console.log(data);
+          const stockData = data['Time Series (Daily)'];
+          console.log(stockData);
+          for (let key in stockData) {
+            stockChartXValues.push(key);
+            stockChartYValuesHigh.push(stockData[key]['2. high']);
+            stockChartYValuesLow.push(stockData[key]['3. low']);
+            stockChartYValuesOpen.push(stockData[key]['1. open']);
+          }
+          
+          setStockChartXValues(stockChartXValues.reverse());
+          setStockChartYValuesHigh(stockChartYValuesHigh.reverse());
+          setStockChartYValuesLow(stockChartYValuesLow.reverse());
+          setStockChartYValuesOpen(stockChartYValuesOpen.reverse());
+        } catch (error) {
         }
+  }
+  
         
-        setStockChartXValues(stockChartXValues.reverse());
-        setStockChartYValuesHigh(stockChartYValuesHigh.reverse());
-        setStockChartYValuesLow(stockChartYValuesLow.reverse());
-        setStockChartYValuesOpen(stockChartYValuesOpen.reverse());
-      } catch (error) {
-      }
-  }
-}
-
-  const handleSearch = (symbol) => {
-    setQuery(symbol);
-  }
+  // const handleSearch = (symbol) => {
+  //   setQuery(symbol);
+  // }
 
   const getPrice = async () => {
     try {
@@ -83,31 +81,33 @@ function App() {
           label: '(' + symbol + ') ' + name,
           value: symbol
         })
-        console.log(arr)
       }
       callBack(arr);
+
     } catch (error) {
 
     }
   }
 
-  const onChange = () => {
-    console.log('OnChange')
-  }
+    const onChange = async (selectedSymbol) => {
+      let symbol = selectedSymbol.value
+      setQuery(symbol, () => search);
+
+    }
 
   return (
     <div className="app">
-      <Search 
+      {/* <Search 
         handleSearch={handleSearch} 
         search={search}
         query={query}
         reset={reset}
-       />
+       /> */}
 
        <Select 
        query={query}
-       onChange={onChange}
        loadOptions={loadOptions}
+       onChange={onChange}
        />
         
        {(stockChartYValuesHigh.length > 0) 
