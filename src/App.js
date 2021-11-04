@@ -92,7 +92,7 @@ function App() {
 
     const onChange = async (selectedSymbol) => {
       let symbol = selectedSymbol.value
-      setQuery(symbol, () => search(symbol));
+      setQuery(symbol, () => search(query));
 
     }
 
