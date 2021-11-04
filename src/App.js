@@ -2,11 +2,12 @@ import React, {useState, useEffect} from "react";
 // import Search from "./components/search";
 import Stock from "./components/Stock";
 import Select from "./components/Search-select";
+import { useStateWithCallbackLazy } from 'use-state-with-callback';
 
 
 function App() {
 
-  const [query, setQuery] = useState('');
+  const [query, setQuery] =  useStateWithCallbackLazy('');
   const [stockChartXValues, setStockChartXValues] = useState([]);
   const [stockChartYValuesHigh, setStockChartYValuesHigh] = useState([]);
   const [stockChartYValuesLow, setStockChartYValuesLow] = useState([]);
@@ -91,7 +92,7 @@ function App() {
 
     const onChange = async (selectedSymbol) => {
       let symbol = selectedSymbol.value
-      setQuery(symbol, () => search);
+      setQuery(symbol, () => search(symbol));
 
     }
 
