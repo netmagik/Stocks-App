@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Stocks-App/static/css/main.4811b46c.chunk.css",
-    "main.js": "/Stocks-App/static/js/main.a28b38aa.chunk.js",
-    "main.js.map": "/Stocks-App/static/js/main.a28b38aa.chunk.js.map",
+    "main.js": "/Stocks-App/static/js/main.95b5ee7a.chunk.js",
+    "main.js.map": "/Stocks-App/static/js/main.95b5ee7a.chunk.js.map",
     "runtime-main.js": "/Stocks-App/static/js/runtime-main.f36e0253.js",
     "runtime-main.js.map": "/Stocks-App/static/js/runtime-main.f36e0253.js.map",
     "static/js/2.e5c88235.chunk.js": "/Stocks-App/static/js/2.e5c88235.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.f36e0253.js",
     "static/js/2.e5c88235.chunk.js",
     "static/css/main.4811b46c.chunk.css",
-    "static/js/main.a28b38aa.chunk.js"
+    "static/js/main.95b5ee7a.chunk.js"
   ]
 }
