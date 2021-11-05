@@ -32,6 +32,8 @@ const Stock = (props) => {
 
     const options = {
        
+        responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 display: true,
@@ -64,7 +66,7 @@ const Stock = (props) => {
                 
         
     return (
-        <div className="chart">
+        <div className="chart">   
             <button 
                 id="get-price-button"
                 onClick={props.getPrice}>
@@ -74,7 +76,7 @@ const Stock = (props) => {
                     <p className="current-price">
                       Current Price For {props.query}: <span>${props.currentPrice}</span>
                     </p> : ''  }
-                
+       
             <Line data={data} options={options} />
         </div>
     )

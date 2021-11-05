@@ -67,6 +67,7 @@ input {
 .chart {
   max-width: 800px;
   margin: 20px auto;
+  height: 60vh;
 }
 
 .symbol {
