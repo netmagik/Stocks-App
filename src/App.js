@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from "react";
-// import Search from "./components/search";
 import Stock from "./components/Stock";
 import Select from "./components/Search-select";
-// import { useStateWithCallbackLazy } from 'use-state-with-callback';
 
 
 function App() {
@@ -48,11 +46,6 @@ function App() {
 
   }, [query]);
   
-  
-        
-  // const handleSearch = (symbol) => {
-  //   setQuery(symbol);
-  // }
 
   const getPrice = async () => {
     try {
@@ -103,13 +96,7 @@ function App() {
 
   return (
     <div className="app">
-      {/* <Search 
-        handleSearch={handleSearch} 
-        search={search}
-        query={query}
-        reset={reset}
-       /> */}
-
+  
        <Select 
        query={query}
        loadOptions={loadOptions}
