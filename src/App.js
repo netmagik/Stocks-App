@@ -116,6 +116,10 @@ function App() {
           /> 
           : ''
         }
+
+      <p className="note">
+        <span className="bold">Note:</span> The free tier of the stock api has a maximum of 5 requests/minute and 500 requests/day</p>
+
    </div>
   );
 }
